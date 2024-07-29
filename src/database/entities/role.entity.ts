@@ -1,10 +1,13 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'role' })
+@Entity({ name: 'roles' })
 export class RoleEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'name', type: 'varchar' })
+  @Column({ type: 'varchar' })
   name: string;
+
+  @Column({ type: 'varchar', unique: true })
+  alias: string;
 }

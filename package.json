@@ -17,7 +17,10 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "migration:sync": "typeorm-ts-node-commonjs migration:run -d src/database/data-source.ts",
+    "migration:generate": "run(){ typeorm-ts-node-commonjs -d src/database/data-source.ts migration:generate src/database/migrations/$1; }; run",
+    "seed:sync": "ts-node -r tsconfig-paths/register ./node_modules/typeorm-seeding/dist/cli.js seed -n src/database/seeder-config.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -28,7 +31,8 @@
     "mysql2": "^3.10.2",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
-    "typeorm": "^0.3.20"
+    "typeorm": "^0.3.20",
+    "typeorm-seeding": "^1.6.1"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
