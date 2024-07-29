@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './feature/auth/auth.module';
 import dbConfig from './config/db.config'
 
 @Module({
@@ -12,6 +13,7 @@ import dbConfig from './config/db.config'
       isGlobal: true,
       load: [dbConfig],
     }),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

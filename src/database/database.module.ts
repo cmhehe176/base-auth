@@ -16,9 +16,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         password: configService.get('database.password'),
         database: configService.get('database.database'),
         // entities: Object.values(entities),
-        entities:['src/database/entities/*.entity.ts'],
+        entities:[],
         synchronize: false,
-        autoLoadEntities: false,
+        autoLoadEntities: true,
         migrations: ['dist/database/migrations/*.ts'],
         // timezone: '-07:00',  ???????????????
       }),
