@@ -8,7 +8,7 @@ export default new DataSource({
   username: process.env.MYSQL_USERNAME,
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DATABASE,
-  entities: ['src/database/entities/index.ts'],
+  entities: ['src/database/entities/*.entity.ts'],
   // entities: ['src/**/*.entity.ts'],// tìm mọi thư mục con của src/ dù có sâu đến mấy vd src/xx/xxx/xxx/xxx/*.entity.ts
   migrations: ['src/database/migrations/*.ts'],
 });
