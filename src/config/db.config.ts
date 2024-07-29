@@ -15,21 +15,13 @@ export default registerAs('database', () => {
 
   try {
     // const credentials = JSON.parse(process.env.MYSQL_CREDENTIALS);
+    
     //something validate
-    //something validate
-    //something validate
-    //something validate
-    //something validate
-    //something validate
-
     return {
       ...config,
       // username: credentials.username || config.username,
       // password: credentials.password || config.password,
-      //something validate
-      //something validate
-      //something validate
-      //something validate
+
       //something validate
     };
   } catch (error) {
