@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'user' })
 export class UserEntity {
@@ -11,6 +11,18 @@ export class UserEntity {
   @Column({ type: 'int', unique: true })
   telePhone: number;
 
+  @Column({ type: 'varchar', unique: true })
+  email: string;
+
   @Column({ type: 'varchar' })
   address: string;
+
+  @Column({ type: 'varchar', unique: true })
+  password: string;
+
+  @BeforeUpdate()
+  @BeforeInsert()
+  Password() {
+    this.password = 'sadfasdjf';
+  }
 }
