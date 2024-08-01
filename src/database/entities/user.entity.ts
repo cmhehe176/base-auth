@@ -1,5 +1,12 @@
-import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
+import {
+  AfterInsert,
+  BeforeInsert,
+  BeforeUpdate,
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import * as argon from 'argon2';
 @Entity({ name: 'user' })
 export class UserEntity {
   @PrimaryGeneratedColumn()
@@ -9,7 +16,7 @@ export class UserEntity {
   name: string;
 
   @Column({ type: 'int', unique: true })
-  telePhone: number;
+  telephone: number;
 
   @Column({ type: 'varchar', unique: true })
   email: string;
@@ -17,12 +24,14 @@ export class UserEntity {
   @Column({ type: 'varchar' })
   address: string;
 
-  @Column({ type: 'varchar', unique: true })
+  @Column({ type: 'varchar' })
   password: string;
 
-  @BeforeUpdate()
   @BeforeInsert()
-  Password() {
-    this.password = 'sadfasdjf';
+  @BeforeUpdate()
+  async hashPassword() {
+    if (this.password) {
+      this.password = await argon.hash(this.password);
+    }
   }
 }

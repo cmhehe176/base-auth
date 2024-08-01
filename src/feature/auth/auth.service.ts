@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { RoleEntity } from 'src/database/entities';
 import { UserEntity } from 'src/database/entities/user.entity';
 import { DataSource, Repository } from 'typeorm';
+import { LoginDto } from './auth.dto';
 
 @Injectable()
 export class AuthService {
@@ -20,5 +21,7 @@ export class AuthService {
     return await this.roleEntity.find();
   };
 
-   
+  async login(data: LoginDto) {
+    return await this.userEntity.save(data);
+  }
 }
