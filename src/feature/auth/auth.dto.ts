@@ -1,14 +1,13 @@
 export class Login {
-  telephone?: string;
-  email?: string;
+  username: string;
   password: string;
   roleId?: string;
 }
 export class Register {
-  name: string
+  name: string;
   telephone: string;
   email: string;
   password: string;
   roleId: number;
-  address: string
+  address: string;
 }
