@@ -10,4 +10,6 @@ export class RoleEntity {
 
   @Column({ type: 'varchar', unique: true })
   alias: string;
+
+  
 }

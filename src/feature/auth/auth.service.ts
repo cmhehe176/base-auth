@@ -1,27 +1,34 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RoleEntity } from 'src/database/entities';
 import { UserEntity } from 'src/database/entities/user.entity';
 import { DataSource, Repository } from 'typeorm';
 import { LoginDto } from './auth.dto';
-
+import * as argon from 'argon2';
 @Injectable()
 export class AuthService {
-  private userEntity: Repository<UserEntity>;
-
   constructor(
     @InjectRepository(RoleEntity)
-    private readonly roleEntity: Repository<RoleEntity>,
-    private dataSource: DataSource,
-  ) {
-    this.userEntity = this.dataSource.getRepository(UserEntity);
-  }
-
-  getRole = async () => {
-    return await this.roleEntity.find();
-  };
+    private readonly userEntity: Repository<UserEntity>,
+  ) {}
 
   async login(data: LoginDto) {
-    return await this.userEntity.save(data);
+    let user: UserEntity;
+    let checkUser: boolean;
+
+    if (data.telephone) {
+      checkUser = await this.userEntity.exists({
+        where: { telephone: data.telephone },
+      });
+    }
+
+    if (data.email) {
+      checkUser = await this.userEntity.exists({
+        where: { email: data.email },
+      });
+    }
+
+    if (!checkUser) throw new BadRequestException(' No match User');
+    
   }
 }
