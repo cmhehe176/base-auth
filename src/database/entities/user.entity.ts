@@ -19,6 +19,6 @@ export class UserEntity {
   @Column({ type: 'varchar' })
   password: string;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', default: 3 })
   roleId: number;
 }

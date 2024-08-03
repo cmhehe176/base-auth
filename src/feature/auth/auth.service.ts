@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { RoleEntity } from 'src/database/entities';
 import { UserEntity } from 'src/database/entities/user.entity';
 import { DataSource, FindOptionsWhere, Repository } from 'typeorm';
-import { LoginDto } from './auth.dto';
+import { Login, Register } from './auth.dto';
 import * as argon from 'argon2';
 import { JwtService } from '@nestjs/jwt';
 @Injectable()
@@ -14,7 +14,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async login(data: LoginDto) {
+  async login(data: Login) {
     let user: UserEntity;
 
     const whereCondition: FindOptionsWhere<UserEntity> = {};
@@ -41,5 +41,17 @@ export class AuthService {
     };
 
     return { accessToken: await this.jwtService.sign(payload) };
+  }
+
+  async register(data: Register) {
+    const checkUser = await this.userEntity.exists({
+      where: { email: data.email },
+    });
+
+    if (checkUser) throw new BadRequestException('User already exist');
+
+    data.password = await argon.hash(data.password);
+
+    await this.userEntity.insert(data);
   }
 }
