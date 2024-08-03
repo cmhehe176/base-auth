@@ -1,6 +1,6 @@
 export class LoginDto {
-  telephone: string;
-  email: string;
-  password: string;
-  RoleId:string
+  telephone?: string;
+  email?: string;
+  password?: string;
+  roleId?:string
 }

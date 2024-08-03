@@ -20,5 +20,5 @@ export class UserEntity {
   password: string;
 
   @Column({ type: 'int' })
-  RoleId: number;
+  roleId: number;
 }

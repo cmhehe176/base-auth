@@ -19,7 +19,7 @@ export default class InitUser implements Seeder {
         email: 'super_admin@hehe.com',
         address: 'Ha Noi',
         password: hashPassword,
-        RoleId: 1,
+        roleId: 1,
       },
       {
         name: 'Admin',
@@ -27,7 +27,7 @@ export default class InitUser implements Seeder {
         email: 'admin@hehe.com',
         address: 'Sai Gon',
         password: hashPassword,
-        RoleId: 2,
+        roleId: 2,
       },
       {
         name: 'User',
@@ -35,7 +35,7 @@ export default class InitUser implements Seeder {
         email: 'user@hehe.com',
         address: 'Ha Phong',
         password: hashPassword,
-        RoleId: 3,
+        roleId: 3,
       },
     ]);
   }
