@@ -13,7 +13,7 @@ import { ERole, Roles } from 'src/common/decorators/role.decorator';
 import { Public } from 'src/common/decorators/public.decorator';
 import { IUser, User } from 'src/common/decorators/user.decorator';
 
-@Controller('auth')
+@Controller('auth') 
 export class AuthController {
   constructor(private authService: AuthService) {}
 
