@@ -8,7 +8,9 @@ import { UserEntity } from 'src/database/entities';
 
 interface AuthPayload {
   id: number | string;
-  name: null | string;
+  name: string;
+  address: string;
+  telephone: number | string;
   email: string;
   role: {
     id: number;
@@ -32,7 +34,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   async validate(payload: AuthPayload) {
     const user = await this.dataSource.manager.findOne(UserEntity, {
-      where: { id: +payload.id },
+      where: { email: payload.email },
       relations: { role: true },
     });
 
