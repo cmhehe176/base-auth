@@ -1,12 +1,12 @@
 networks:
-  dklh-net: {}
+  base-net: {}
 
 volumes:
-  dklh-vol: {}
+  base-vol: {}
 
 services:
   
-  dklh:
+  base:
     build: 
       context: .
       dockerfile: Dockerfile
@@ -15,11 +15,11 @@ services:
       database:
         condition: service_healthy
     networks:
-      - dklh-net
+      - base-net
     ports:
       - 3000:${PORT}/tcp
     volumes:
-      - .:/dklh
+      - .:/base
   
   database:
     image: mysql:8.0
@@ -44,9 +44,9 @@ services:
     ports:
       - 3306:${MYSQL_PORT}
     networks:
-      - dklh-net
+      - base-net
     volumes:
-      - dklh-vol:/var/lib/mysql
+      - base-vol:/var/lib/mysql
 
   adminer:
     image: adminer
@@ -61,6 +61,6 @@ services:
       - ADMINER_PLUGINS=dump-json dump-zip edit-foreign json-column tables-filter tinymce
     restart: always
     networks:
-      - dklh-net
+      - base-net
     ports:
       - 8080:8080/tcp
