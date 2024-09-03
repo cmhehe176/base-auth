@@ -32,6 +32,29 @@
 $ yarn install
 ```
 
+## Setup Database
+
+```bash
+
+# just linux, if you use window, just copy .env.example and paste to new file .env
+$ cp .env.example .env
+
+$ docker compose up -d --build
+
+$ yarn seed
+
+$ yarn migration
+
+```
+
+# click this link to access database
+
+[Adminer](http://localhost:8080/)
+
+# click this link to access to application
+
+[Nest](http://localhost:3000/)
+
 ## Running the app
 
 ```bash
@@ -39,10 +62,10 @@ $ yarn install
 $ yarn run start
 
 # watch mode
-$ yarn run start:dev
+$ yarn dev
 
 # production mode
-$ yarn run start:prod
+$ yarn prod
 ```
 
 ## Test

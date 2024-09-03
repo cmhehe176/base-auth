@@ -1,6 +1,6 @@
 FROM node:20.14.0
 
-WORKDIR /dklh
+WORKDIR /base
 
 COPY package.json yarn.lock ./
 
